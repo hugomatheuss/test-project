@@ -9,13 +9,19 @@
     </target>
 
     <target name="compile" description="compile java sources">
-        <javac srcdir="${source.dir}" destdir="${build.dir}" includeantruntime="false">
-            <classpath refid="junit.class.path" />
-        </javac>
+        <javac srcdir="${source.dir}" destdir="${build.dir}"/>
     </target>
 
-    <target name="doc" depends="init" description="generate documentation">
+    <target name="doc" description="generate documentation">
         <javadoc sourcepath="${source.dir}" destdir="${doc.dir}"/>
+    </target>
+
+    <target name="clean" description="tidy up the workspace">
+        <delete dir="${build.dir}"/>
+        <delete dir="${doc.dir}"/>
+        <delete>
+            <fileset defaultexcludes="no" dir="${source.dir}" includes="**/*~"/>
+        </delete>
     </target>
 
     <target name="main" depends="compile">
