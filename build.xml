@@ -1,0 +1,24 @@
+<project name="Sample Project" default="main" basedir=".">
+    <property name="source.dir" location="src"/>
+    <property name="build.dir" location="bin"/>
+    <property name="doc.dir" location="doc"/>
+
+    <target name="init" description="setup project directories">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${doc.dir}"/>
+    </target>
+
+    <target name="compile" description="compile java sources">
+        <javac srcdir="${source.dir}" destdir="${build.dir}" includeantruntime="false">
+            <classpath refid="junit.class.path" />
+        </javac>
+    </target>
+
+    <target name="doc" depends="init" description="generate documentation">
+        <javadoc sourcepath="${source.dir}" destdir="${doc.dir}"/>
+    </target>
+
+    <target name="main" depends="compile">
+        <description>Main target</description>
+    </target>
+</project>
